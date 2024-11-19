@@ -1,0 +1,47 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.fingerprintscan"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.fingerprintscan"
+        minSdk = 23 // Ensure this is 23 or higher for biometric support
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Change this to your release signing config
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'your-key-alias'
+            keyPassword 'your-key-password'
+            storeFile file('your-keystore-file.jks')
+            storePassword 'your-store-password'
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
